@@ -79,15 +79,15 @@ Ajoute tes captures réelles dans le dossier `screenshots/`, à la racine du pro
 
 ### Tableau de bord
 
-![Tableau de bord ClinicFlow](screenshots/dashboard.png)
+![Tableau de bord ClinicFlow](screenshots/dash.png)
 
 ### Gestion des patients
 
-![Gestion des patients ClinicFlow](screenshots/patients.png)
+![Gestion des patients ClinicFlow](screenshots/pt.png)
 
 ### Gestion des rendez-vous
 
-![Gestion des rendez-vous ClinicFlow](screenshots/appointments.png)
+![Gestion des rendez-vous ClinicFlow](screenshots/rdv.png)
 
 > Remplace les noms ci-dessus par ceux de tes fichiers réels si nécessaire. Les images ne s'afficheront pas tant qu'elles n'auront pas été ajoutées au dépôt.
 
