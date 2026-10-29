@@ -12,13 +12,17 @@ ClinicFlow est une application full-stack conçue pour faciliter la gestion quot
 - [Fonctionnalités](#fonctionnalités)
 - [Technologies](#technologies)
 - [Captures d'écran](#captures-décran)
+- [Architecture et conception UML](#architecture-et-conception-uml)
 - [Prérequis](#prérequis)
-- [Installation](#installation-et-lancement)
+- [Installation et lancement](#installation-et-lancement)
 - [Configuration](#configuration)
-- [Documentation API](#documentation-de-lapi)
+- [Configuration Docker](#configuration-docker)
+- [Documentation de l'API](#documentation-de-lapi)
 - [Comptes de démonstration](#comptes-de-démonstration)
 - [Sécurité](#sécurité)
 - [Auteur](#auteur)
+
+---
 
 ## Présentation
 
@@ -37,14 +41,14 @@ Le projet a été réalisé dans le cadre d'un test technique full-stack.
 
 - Connexion par email et mot de passe.
 - Gestion des rôles Admin et Staff.
-- Accès aux fonctionnalités selon les autorisations configurées.
+- Contrôle des accès selon les autorisations configurées.
 
 ### Gestion des patients
 
 - Création et consultation des dossiers patients.
 - Modification des informations.
 - Recherche des patients.
-- Identification des patients à l'aide de leur CIN, selon les règles de validation de l'application.
+- Identification des patients à l'aide de leur CIN, selon les règles de validation implémentées.
 
 ### Gestion des rendez-vous
 
@@ -55,7 +59,7 @@ Le projet a été réalisé dans le cadre d'un test technique full-stack.
 ### Tableau de bord
 
 - Visualisation des principaux indicateurs.
-- Synthèse des informations liées aux patients et aux rendez-vous.
+- Synthèse des informations relatives aux patients et aux rendez-vous.
 
 ## Technologies
 
@@ -70,30 +74,88 @@ Le projet a été réalisé dans le cadre d'un test technique full-stack.
 | PostgreSQL | Base de données relationnelle |
 | JWT | Authentification par jeton, si configurée |
 | Docker / Docker Compose | Conteneurisation, si configurée |
-| Swagger | Documentation API, si configurée |
+| Swagger | Documentation de l'API, si configurée |
 | Git / GitHub | Gestion de versions et hébergement |
+
+---
 
 ## Captures d'écran
 
-Ajoute tes captures d'écran réelles dans le dossier `screenshots/`, à la racine du projet.
+Cette section présente les principales interfaces de ClinicFlow.
 
-### Page de connexion
+### 1. Page de connexion
 
 ![Page de connexion ClinicFlow](screenshots/login.png)
 
-### Tableau de bord
+### 2. Tableau de bord
 
 ![Tableau de bord ClinicFlow](screenshots/dash.png)
 
-### Gestion des patients
+### 3. Gestion des patients
 
 ![Gestion des patients ClinicFlow](screenshots/pt.png)
 
-### Gestion des rendez-vous
+### 4. Gestion des rendez-vous
 
 ![Gestion des rendez-vous ClinicFlow](screenshots/rdv.png)
 
-**Remarque :** les fichiers images doivent exister dans le dossier `screenshots/`. Remplace les noms ci-dessus par ceux de tes captures réelles si nécessaire.
+---
+
+## Architecture et conception UML
+
+Cette section regroupe les diagrammes de conception de ClinicFlow et les captures des outils techniques utilisés.
+
+### 1. Docker et Docker Compose
+
+Présentation de la configuration de conteneurisation et des services de l'application.
+
+![Configuration Docker ClinicFlow](screenshots/docker.png)
+
+### 2. Documentation API Swagger
+
+Présentation des endpoints de l'API REST et de leur documentation interactive, si Swagger est configuré.
+
+![Documentation Swagger ClinicFlow](screenshots/swaguer.png)
+
+### 3. Diagramme entité-relation (ERD)
+
+Le diagramme ERD présente les principales entités de la base de données PostgreSQL et leurs relations.
+
+![Diagramme ERD ClinicFlow](screenshots/ERD.png)
+
+### 4. Diagramme de cas d'utilisation (Use Case)
+
+Ce diagramme représente les interactions entre les acteurs Admin et Staff et les fonctionnalités de ClinicFlow.
+
+![Diagramme de cas d'utilisation ClinicFlow](screenshots/2.png)
+
+### 5. Diagramme d'activité
+
+Ce diagramme illustre le déroulement d'un processus métier, par exemple la création d'un rendez-vous.
+
+![Diagramme d'activité ClinicFlow](screenshots/6.png)
+
+### 6. Diagrammes de séquence UML
+
+#### 6.1. Séquence d'authentification
+
+Ce diagramme illustre les échanges entre l'utilisateur, l'interface, l'API et la base de données lors de la connexion, selon l'architecture réellement implémentée.
+
+![Diagramme de séquence d'authentification](screenshots/3.png)
+
+#### 6.2. Séquence de gestion des rendez-vous
+
+Ce diagramme représente les échanges lors de la création d'un rendez-vous.
+
+![Diagramme de séquence des rendez-vous](screenshots/4.png)
+
+### 7. Diagramme de classes UML
+
+Ce diagramme représente les principales classes métier, leurs attributs et leurs associations.
+
+![Diagramme de classes UML ClinicFlow](screenshots/1.png)
+
+---
 
 ## Prérequis
 
@@ -114,27 +176,25 @@ git clone https://github.com/syassihajar9/ClinicFlow.git
 cd ClinicFlow
 ```
 
-### 2. Installer les dépendances
-
-**Backend :**
+### 2. Installer les dépendances du backend
 
 ```bash
 cd backend
 npm install
 ```
 
-**Frontend :**
+### 3. Installer les dépendances du frontend
 
-Dans un autre terminal, depuis le dossier racine du projet :
+Ouvre un autre terminal à la racine du projet :
 
 ```bash
 cd frontend
 npm install
 ```
 
-### 3. Configuration de l'environnement
+### 4. Configurer l'environnement
 
-Crée un fichier `backend/.env` en respectant les variables attendues par ton code.
+Crée un fichier `backend/.env` en respectant les variables réellement utilisées par ton code.
 
 Exemple indicatif :
 
@@ -144,41 +204,43 @@ DATABASE_URL=postgresql://USER:PASSWORD@localhost:5432/clinicflow
 JWT_SECRET=replace_with_a_secure_secret
 ```
 
-Adapte les noms des variables à la configuration réellement utilisée par le projet.
+Adapte les noms des variables à la configuration de ton application.
 
-**Important :** ne publie jamais ton fichier `.env` sur GitHub.
+**Important :** ne publie jamais le fichier `.env` sur GitHub.
 
-### 4. Préparer la base de données
+### 5. Préparer la base de données
 
-Crée la base de données PostgreSQL et exécute les migrations ou scripts SQL prévus dans le projet.
+Crée la base PostgreSQL et exécute les migrations ou scripts SQL prévus dans le projet.
 
-Si un script de seed existe, utilise-le pour créer les données de démonstration.
+Si un script de seed est disponible, utilise-le pour créer les données de démonstration.
 
-Consulte les scripts définis dans `backend/package.json` pour connaître les commandes exactes.
+Consulte `backend/package.json` pour connaître les commandes réellement définies.
 
-### 5. Démarrer le backend
+### 6. Démarrer le backend
 
-Dans un terminal ouvert dans le dossier `backend` :
-
-```bash
-npm run dev
-```
-
-Cette commande suppose que le script `dev` est défini dans `backend/package.json`.
-
-### 6. Démarrer le frontend
-
-Dans un autre terminal ouvert dans le dossier `frontend` :
+Dans un terminal ouvert dans `backend` :
 
 ```bash
 npm run dev
 ```
 
-Ouvre ensuite l'adresse locale affichée dans le terminal, généralement fournie par Vite.
+Cette commande suppose que le script `dev` existe dans `backend/package.json`.
+
+### 7. Démarrer le frontend
+
+Dans un autre terminal ouvert dans `frontend` :
+
+```bash
+npm run dev
+```
+
+Ouvre ensuite l'adresse locale indiquée dans le terminal par Vite.
+
+---
 
 ## Configuration Docker
 
-Si Docker Compose est correctement configuré, lance les services depuis la racine du projet :
+Si le projet possède un fichier `compose.yaml` ou `docker-compose.yml` correctement configuré, lance les services depuis la racine du dépôt :
 
 ```bash
 docker compose up --build
@@ -190,19 +252,23 @@ Pour arrêter les services :
 docker compose down
 ```
 
-Ces commandes supposent qu'un fichier `compose.yaml` ou `docker-compose.yml` est présent à la racine du projet.
+Ces commandes ne fonctionnent que si la configuration Docker nécessaire est présente.
+
+---
 
 ## Documentation de l'API
 
-Si Swagger est configuré dans le backend, la documentation interactive peut être disponible à l'adresse suivante :
+Si Swagger est configuré, la documentation interactive peut être accessible à l'adresse suivante :
 
 [http://localhost:5000/api-docs](http://localhost:5000/api-docs)
 
-Vérifie le port et le chemin définis dans ton application.
+Vérifie le port et le chemin réellement définis dans le backend.
+
+---
 
 ## Comptes de démonstration
 
-Les comptes suivants sont destinés aux tests de l'application ClinicFlow.
+Les comptes suivants sont destinés aux tests de ClinicFlow.
 
 | Rôle | Email | Mot de passe |
 |---|---|---|
@@ -211,10 +277,11 @@ Les comptes suivants sont destinés aux tests de l'application ClinicFlow.
 
 **Important :**
 
-- Ces comptes doivent avoir été créés dans la base de données.
+- Les comptes doivent exister dans la base de données.
 - Les mots de passe doivent être stockés sous forme de hachage sécurisé côté backend.
-- Les identifiants ci-dessus ne fonctionnent que si les comptes correspondants existent et que l'authentification est correctement configurée.
+- Les identifiants ne fonctionneront que si les comptes correspondants ont été créés et que l'authentification est correctement configurée.
 - Utilise uniquement des données fictives pour les démonstrations.
+- Évite de publier ces mots de passe si le dépôt est public ou si les identifiants sont réutilisés ailleurs.
 
 ## Sécurité
 
@@ -224,8 +291,10 @@ Les comptes suivants sont destinés aux tests de l'application ClinicFlow.
 - Stocke les mots de passe sous forme de hachage sécurisé.
 - Protège les routes réservées au rôle Admin.
 - Valide les données reçues par l'API.
-- N'expose aucune clé secrète ni aucun identifiant personnel.
-- Évite de publier des mots de passe réutilisés dans un dépôt public.
+- N'expose aucune clé secrète ni aucune donnée personnelle.
+- Utilise des identifiants spécifiques aux démonstrations.
+
+---
 
 ## Auteur
 
