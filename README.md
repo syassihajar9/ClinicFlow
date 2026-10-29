@@ -109,13 +109,13 @@ Cette section regroupe les diagrammes de conception de ClinicFlow et les capture
 
 Présentation de la configuration de conteneurisation et des services de l'application.
 
-![Configuration Docker ClinicFlow](screenshots/docker.png)
+![Configuration Docker ClinicFlow](screenshots/do.png)
 
 ### 2. Documentation API Swagger
 
 Présentation des endpoints de l'API REST et de leur documentation interactive, si Swagger est configuré.
 
-![Documentation Swagger ClinicFlow](screenshots/swaguer.png)
+![Documentation Swagger ClinicFlow](screenshots/swa.png)
 
 ### 3. Diagramme entité-relation (ERD)
 
