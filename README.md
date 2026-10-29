@@ -1,244 +1,219 @@
-\# ClinicFlow — Gestion des patients et des rendez-vous
+# ClinicFlow | Patient & Appointment Management
 
+**Application web de gestion de patients et de rendez-vous pour une clinique.**
 
+ClinicFlow est une application full-stack conçue pour faciliter la gestion quotidienne d'une clinique grâce à une interface intuitive, une API REST et une base de données relationnelle.
 
-\## Présentation du projet
+---
 
+## Sommaire
 
+- [Présentation](#-présentation)
+- [Fonctionnalités](#-fonctionnalités)
+- [Technologies](#-technologies)
+- [Captures d'écran](#-captures-décran)
+- [Prérequis](#-prérequis)
+- [Installation](#-installation-et-lancement)
+- [Configuration](#-configuration)
+- [Documentation API](#-documentation-de-lapi)
+- [Comptes de démonstration](#-comptes-de-démonstration)
+- [Sécurité](#-sécurité)
+- [Auteur](#-auteur)
 
-ClinicFlow est une application web de gestion destinée à une petite clinique. Elle permet de gérer les patients, les rendez-vous et les utilisateurs, et de consulter un tableau de bord récapitulatif.
+## Présentation
 
+ClinicFlow vise à centraliser les principales opérations d'une clinique dans une seule application :
 
+- Gestion des patients et de leurs informations.
+- Organisation et suivi des rendez-vous.
+- Authentification des utilisateurs et gestion des rôles.
+- Consultation des indicateurs d'activité dans un tableau de bord.
 
-\## Fonctionnalités principales
+Le projet a été réalisé dans le cadre d'un test technique full-stack.
 
+## Fonctionnalités
 
+### Authentification et utilisateurs
+- Connexion par email et mot de passe.
+- Gestion des rôles Admin et Staff.
+- Accès aux fonctionnalités selon les autorisations configurées.
 
-\- Authentification par email et mot de passe.
+### Gestion des patients
+- Création et consultation des dossiers patients.
+- Modification des informations.
+- Recherche des patients.
+- Identification des patients à l'aide de leur CIN, selon les règles de validation de l'application.
 
-\- Gestion des rôles Admin et Staff.
+### Gestion des rendez-vous
+- Création et consultation des rendez-vous.
+- Suivi des statuts.
+- Gestion des conflits de rendez-vous selon les règles métier implémentées.
 
-\- Gestion des patients.
+### Tableau de bord
+- Visualisation des principaux indicateurs.
+- Synthèse des informations liées aux patients et aux rendez-vous.
 
-\- Gestion des rendez-vous et de leurs statuts.
+## Technologies
 
-\- Tableau de bord avec indicateurs clés.
+| Technologie | Rôle |
+|---|---|
+| React | Interface utilisateur |
+| JavaScript | Développement frontend |
+| Vite | Outil de développement frontend |
+| CSS | Mise en forme de l'interface |
+| Node.js | Environnement d'exécution backend |
+| Express.js | API REST |
+| PostgreSQL | Base de données relationnelle |
+| JWT | Authentification par jeton, si configurée |
+| Docker / Docker Compose | Conteneurisation, si configurée |
+| Swagger | Documentation API, si configurée |
+| Git / GitHub | Gestion de versions et hébergement |
 
-\- API REST et base de données PostgreSQL.
+## Captures d'écran
 
+Ajoute tes captures réelles dans le dossier `screenshots/`, à la racine du projet. Les images s'afficheront ensuite directement sur GitHub.
 
+### Connexion
 
-\## Technologies utilisées
+![Page de connexion ClinicFlow](screenshots/login.png)
 
+### Tableau de bord
 
+![Tableau de bord ClinicFlow](screenshots/dashboard.png)
 
-\- \*\*Frontend :\*\* React, JavaScript, Vite, CSS.
+### Gestion des patients
 
-\- \*\*Backend :\*\* Node.js, Express.js.
+![Gestion des patients ClinicFlow](screenshots/patients.png)
 
-\- \*\*Base de données :\*\* PostgreSQL.
+### Gestion des rendez-vous
 
-\- \*\*Authentification :\*\* JWT, si configuré.
+![Gestion des rendez-vous ClinicFlow](screenshots/appointments.png)
 
-\- \*\*Conteneurisation :\*\* Docker et Docker Compose, si configurés.
+> Remplace les noms ci-dessus par ceux de tes fichiers réels si nécessaire. Les images ne s'afficheront pas tant qu'elles n'auront pas été ajoutées au dépôt.
 
-\- \*\*Documentation API :\*\* Swagger, si configuré.
+## Prérequis
 
-\- \*\*Versionnement :\*\* Git et GitHub.
+Avant de démarrer le projet, installe :
 
+- [Node.js](https://nodejs.org/)
+- npm
+- [PostgreSQL](https://www.postgresql.org/), si la base n'est pas fournie par Docker
+- [Git](https://git-scm.com/)
+- Docker et Docker Compose, si tu utilises le lancement conteneurisé
 
+## Installation et lancement
 
-\## Installation
-
-
-
-\### 1. Cloner le projet
-
-
+### 1. Cloner le dépôt
 
 ```bash
-
 git clone https://github.com/syassihajar9/ClinicFlow.git
-
 cd ClinicFlow
-
 ```
 
+### 2. Installer les dépendances
 
-
-\### 2. Installer les dépendances du backend
-
-
+Backend :
 
 ```bash
-
 cd backend
-
 npm install
-
 ```
 
+Frontend, dans un autre terminal depuis la racine du projet :
 
+```bash
+cd frontend
+npm install
+```
 
-\### 3. Configurer les variables d'environnement
+### 3. Configurer l'environnement
 
+Crée un fichier `backend/.env` en respectant les variables attendues par ton code.
 
-
-Créer le fichier `backend/.env` selon la configuration du projet. Exemple :
-
-
+Exemple indicatif :
 
 ```env
-
 PORT=5000
-
-DATABASE\_URL=postgresql://USER:PASSWORD@localhost:5432/clinicflow
-
-JWT\_SECRET=replace\_with\_a\_secure\_secret
-
+DATABASE_URL=postgresql://USER:PASSWORD@localhost:5432/clinicflow
+JWT_SECRET=replace_with_a_secure_secret
 ```
 
+Adapte les noms de variables à la configuration réellement utilisée par le projet. Ne publie jamais ton fichier `.env`.
 
+### 4. Préparer la base de données
 
-Remplacer les valeurs d'exemple par les paramètres de ton environnement local. Ne pas publier le fichier `.env`.
+Crée la base PostgreSQL et exécute les migrations ou scripts SQL prévus dans le projet. Si un script de seed existe, utilise-le pour créer les données de démonstration.
 
+Consulte les scripts de `backend/package.json` pour connaître les commandes exactes.
 
+### 5. Démarrer le backend
 
-\### 4. Démarrer le backend
-
-
-
-Depuis le dossier `backend`, si le script `dev` existe dans `package.json` :
-
-
+Dans un terminal ouvert dans `backend` :
 
 ```bash
-
 npm run dev
-
 ```
 
+Cette commande suppose que le script `dev` est défini dans `backend/package.json`.
 
+### 6. Démarrer le frontend
 
-\### 5. Démarrer le frontend
-
-
-
-Dans un nouveau terminal :
-
-
+Dans un autre terminal, depuis `frontend` :
 
 ```bash
-
-cd frontend
-
-npm install
-
 npm run dev
-
 ```
 
+Ouvre ensuite l'adresse locale affichée dans le terminal, généralement fournie par Vite.
 
+## Configuration Docker
 
-Ouvrir l'adresse locale affichée par Vite.
-
-
-
-\### 6. Docker
-
-
-
-Si le fichier Docker Compose est correctement configuré, lancer à la racine du projet :
-
-
+Si Docker Compose est correctement configuré, lance les services depuis la racine du projet :
 
 ```bash
-
 docker compose up --build
-
 ```
 
-
-
-Pour arrêter les conteneurs :
-
-
+Pour arrêter les services :
 
 ```bash
-
 docker compose down
-
 ```
 
+## Documentation de l'API
 
+Si Swagger est configuré dans le backend, la documentation interactive peut être disponible à :
 
-\## Documentation de l'API
+[http://localhost:5000/api-docs](http://localhost:5000/api-docs)
 
+Vérifie le port et le chemin définis dans ton application.
 
+## Comptes de démonstration
 
-Si Swagger est configuré, consulter :
+Les comptes doivent exister dans la base de données pour pouvoir être utilisés.
 
+| Rôle | Email |
+|---|---|
+| Admin | `admin@clinicflow.local` |
+| Staff | `staff@clinicflow.local` |
 
+Les mots de passe doivent être communiqués uniquement pour des comptes de démonstration dédiés, sans données réelles ni accès sensibles. Évite de publier les mots de passe directement dans un dépôt public.
 
-http://localhost:5000/api-docs
+## Sécurité
 
+- Ne versionne pas les fichiers `.env`.
+- Utilise des données fictives pour les démonstrations.
+- Vérifie les autorisations sur les routes protégées.
+- Stocke les mots de passe sous forme de hachage sécurisé.
+- N'expose aucune clé secrète ni aucun identifiant personnel.
 
+## Auteur
 
-Vérifier le port et le chemin dans la configuration du backend.
+**Hajar Syassi**
 
+- GitHub : [@syassihajar9](https://github.com/syassihajar9)
+- Projet : [ClinicFlow](https://github.com/syassihajar9/ClinicFlow)
 
+---
 
-\## Comptes de démonstration
-
-
-
-Utiliser uniquement les comptes de test réellement configurés dans la base de données.
-
-
-
-| Rôle | Email | Mot de passe |
-
-|---|---|---|
-
-| Admin | `admin@clinicflow.local` | ClinicFlowAdmin2026! |
-
-| Staff | `staff@clinicflow.local` | SY2003assi@|
-
-
-
-Les mots de passe ne doivent être publiés que s'il s'agit de comptes dédiés à la démonstration, sans accès à des données réelles. Ne jamais réutiliser de mot de passe personnel.
-
-
-
-\## Sécurité
-
-
-
-\- Ne pas publier les fichiers `.env`.
-
-\- Protéger les routes selon les rôles des utilisateurs.
-
-\- Utiliser des données fictives pour les démonstrations.
-
-\- Ne pas exposer de clés secrètes.
-
-
-
-\## Auteur
-
-
-
-\*\*Hajar Syassi\*\*
-
-
-
-GitHub : https://github.com/syassihajar9
-
-
-
-\---
-
-
-
-Projet réalisé dans le cadre d'un test technique — ClinicFlow.
-
+*ClinicFlow — Projet de développement full-stack réalisé dans le cadre d'un test technique.*
