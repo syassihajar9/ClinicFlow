@@ -1,0 +1,26 @@
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: clinicflow-backend
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    environment:
+      DB_HOST: host.docker.internal
+      PORT: 5000
+    ports:
+      - "5000:5000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: clinicflow-frontend
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend

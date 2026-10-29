@@ -1,0 +1,1140 @@
+
+/* =========================================================
+   CLINICFLOW — PATIENTS
+   Même identité visuelle que Rendez-vous (.cf-ap)
+   Petroleum Teal · Mint · Clean Medical UI
+   ========================================================= */
+
+.cfp-page {
+  --ink: #0f2f36;
+  --teal: #0f766e;
+  --teal-dark: #0b4f58;
+  --mint: #2dd4bf;
+  --line: #e4ecec;
+  --muted: #7a8e91;
+
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 0;
+  color: var(--ink);
+  font-family: inherit;
+  animation: cfp-in .4s ease both;
+}
+
+.cfp-page *,
+.cfp-overlay * {
+  box-sizing: border-box;
+}
+
+.cfp-page button,
+.cfp-overlay button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.cfp-page button:focus-visible,
+.cfp-overlay button:focus-visible,
+.cfp-page input:focus-visible,
+.cfp-overlay input:focus-visible {
+  outline: 3px solid rgba(45, 212, 191, .3);
+  outline-offset: 2px;
+}
+
+.cfp-page button:disabled,
+.cfp-overlay button:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+/* ===== 01. En-tête ===== */
+
+.cfp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.cfp-eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: #e3f6f3;
+  color: var(--teal);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+.cfp-header h1 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(28px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -1.2px;
+}
+
+.cfp-header p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ===== 02. Boutons ===== */
+
+.cfp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 650;
+  white-space: nowrap;
+  transition: .2s;
+}
+
+.cfp-btn:hover:not(:disabled) {
+  border-color: #b7dcd6;
+  background: #f3fbf9;
+}
+
+.cfp-btn-primary {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(15, 118, 110, .25);
+}
+
+.cfp-btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--teal-dark), #0d9488);
+  color: #fff;
+}
+
+.cfp-btn-danger {
+  border-color: transparent;
+  background: linear-gradient(135deg, #b93838, #d65b5b);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(214, 91, 91, .15);
+}
+
+.cfp-btn-danger:hover:not(:disabled) {
+  background: #a93232;
+  color: #fff;
+}
+
+/* ===== 03. Carte principale ===== */
+
+.cfp-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 6px 22px rgba(15, 47, 54, .04);
+}
+
+/* ===== 04. Barre d'outils ===== */
+
+.cfp-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.cfp-toolbar-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-width: 0;
+}
+
+.cfp-toolbar-title h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -.4px;
+}
+
+.cfp-count {
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  padding: 4px 10px;
+  border: 1px solid #cdeadf;
+  border-radius: 999px;
+  background: #effaf6;
+  color: var(--teal);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.cfp-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 240px;
+  min-width: 200px;
+  max-width: 350px;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--muted);
+  transition: .2s;
+}
+
+.cfp-search:focus-within {
+  border-color: #6fc3b8;
+  box-shadow: 0 0 0 3px rgba(15, 148, 136, .1);
+}
+
+.cfp-search input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.cfp-search input:focus-visible {
+  outline: 0;
+}
+
+.cfp-search input::placeholder {
+  color: #9aadaf;
+}
+
+.cfp-search input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.cfp-search button {
+  display: grid;
+  flex: 0 0 28px;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+}
+
+.cfp-search button:hover {
+  background: #e3f6f3;
+  color: var(--teal-dark);
+}
+
+/* ===== 05. Alertes ===== */
+
+.cfp-alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 16px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.cfp-alert p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.cfp-alert[role="alert"] {
+  border: 1px solid #f3d3d3;
+  background: #fff3f3;
+  color: #a63d3d;
+}
+
+.cfp-form > .cfp-alert {
+  margin: 0;
+}
+
+/* ===== 06. Tableau des patients ===== */
+
+.cfp-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.cfp-table {
+  width: 100%;
+  min-width: 850px;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+}
+
+.cfp-table thead {
+  background: #f5f9f9;
+}
+
+.cfp-table th {
+  padding: 15px 16px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.cfp-table td {
+  padding: 15px 16px;
+  border-bottom: 1px solid #edf2f2;
+  color: #496469;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.cfp-table tbody tr {
+  transition: background .2s;
+}
+
+.cfp-table tbody tr:hover {
+  background: #f5fbf9;
+}
+
+.cfp-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.cfp-table th:first-child,
+.cfp-table td:first-child {
+  padding-left: 22px;
+}
+
+.cfp-table th:last-child,
+.cfp-table td:last-child {
+  padding-right: 22px;
+}
+
+.cfp-th-actions {
+  text-align: right;
+}
+
+/* ===== 07. Identité du patient ===== */
+
+.cfp-person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 175px;
+}
+
+.cfp-person strong {
+  max-width: 200px;
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 750;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cfp-avatar {
+  display: grid;
+  flex: 0 0 42px;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--teal-dark), var(--mint));
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.cfp-avatar.is-large {
+  flex-basis: 64px;
+  width: 64px;
+  height: 64px;
+  border-radius: 19px;
+  font-size: 19px;
+}
+
+.cfp-cin {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 9px;
+  border: 1px solid #e4ecec;
+  border-radius: 8px;
+  background: #f6f9f9;
+  color: var(--teal-dark);
+  font-size: 11px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.cfp-age {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.cfp-address {
+  display: block;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ===== 08. Boutons d'action ===== */
+
+.cfp-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.cfp-actions button,
+.cfp-icon-btn {
+  display: grid;
+  flex: 0 0 36px;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--teal-dark);
+  transition: .2s;
+}
+
+.cfp-actions button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: #b7dcd6;
+  background: #e3f6f3;
+  color: var(--teal);
+}
+
+.cfp-actions button.is-danger {
+  color: #c34c4c;
+}
+
+.cfp-actions button.is-danger:hover:not(:disabled) {
+  border-color: #f3d3d3;
+  background: #fff3f3;
+  color: #a63d3d;
+}
+
+.cfp-icon-btn:hover:not(:disabled) {
+  border-color: #f3d3d3;
+  background: #fff3f3;
+  color: #a63d3d;
+}
+
+/* ===== 09. Chargement et liste vide ===== */
+
+.cfp-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 270px;
+  padding: 48px 20px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.cfp-state > svg {
+  color: var(--teal);
+  stroke-width: 1.5;
+}
+
+.cfp-state h3 {
+  margin: 3px 0 0;
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.cfp-state p {
+  max-width: 390px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.cfp-spinner {
+  display: block;
+  width: 34px;
+  height: 34px;
+  border: 3px solid #dcefeb;
+  border-top-color: var(--teal);
+  border-radius: 50%;
+  animation: cfp-spin .8s linear infinite;
+}
+
+/* ===== 10. Pagination ===== */
+
+.cfp-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+  border-top: 1px solid var(--line);
+  background: #fafcfc;
+}
+
+.cfp-pagination > span {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.cfp-pagination > span strong {
+  color: var(--teal-dark);
+}
+
+.cfp-pagination > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cfp-pagination .cfp-btn {
+  min-height: 38px;
+  padding: 0 13px;
+  font-size: 11px;
+}
+
+/* ===== 11. Fenêtre modale ===== */
+
+.cfp-overlay {
+  position: fixed;
+  z-index: 2000;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 24px;
+  color: var(--ink);
+  background: rgba(8, 32, 38, .5);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  animation: cfp-fade .2s ease;
+}
+
+.cfp-dialog {
+  display: flex;
+  flex-direction: column;
+  width: min(560px, 100%);
+  max-height: calc(100vh - 48px);
+  max-height: calc(100dvh - 48px);
+  overflow: hidden;
+  border: 1px solid rgba(228, 236, 236, .9);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .28);
+  animation: cfp-pop .25s ease;
+}
+
+.cfp-dialog-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 28px 18px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(135deg, #f6fbfa, #fff);
+}
+
+.cfp-dialog-head > div {
+  min-width: 0;
+}
+
+.cfp-dialog-head h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -.5px;
+}
+
+.cfp-dialog-head p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.cfp-dialog-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 22px 28px;
+  overscroll-behavior: contain;
+}
+
+.cfp-dialog-foot {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 16px 28px;
+  border-top: 1px solid var(--line);
+  background: #fafcfc;
+}
+
+/* ===== 12. Formulaire ===== */
+
+.cfp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cfp-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cfp-section + .cfp-section {
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.cfp-section h3 {
+  margin: 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+  color: var(--teal-dark);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.cfp-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.cfp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+  color: #3f5a5e;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.cfp-field label {
+  color: #3f5a5e;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.cfp-field input {
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  outline: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  transition: .2s;
+}
+
+.cfp-field input:hover {
+  border-color: #c4dcd8;
+}
+
+.cfp-field input:focus {
+  border-color: #6fc3b8;
+  box-shadow: 0 0 0 3px rgba(15, 148, 136, .12);
+}
+
+.cfp-field input::placeholder {
+  color: #9aadaf;
+}
+
+.cfp-field.has-error input {
+  border-color: #d65b5b;
+  box-shadow: 0 0 0 3px rgba(214, 91, 91, .1);
+}
+
+.cfp-field-error {
+  color: #a63d3d;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* ===== 13. Fiche patient ===== */
+
+.cfp-profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 22px;
+  padding: 18px;
+  border: 1px solid #cdeadf;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #effaf6, #f8fdfc);
+}
+
+.cfp-profile > div:last-child {
+  min-width: 0;
+}
+
+.cfp-profile h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.cfp-profile span {
+  display: inline-block;
+  margin-top: 7px;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.cfp-muted {
+  margin: 12px 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.cfp-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 24px;
+}
+
+.cfp-detail-grid > div {
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  transition: .2s;
+}
+
+.cfp-detail-grid > div:hover {
+  border-color: #cdeadf;
+  background: #f9fcfb;
+}
+
+.cfp-detail-grid dt {
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+}
+
+.cfp-detail-grid dd {
+  margin: 0;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+/* ===== 14. Rendez-vous dans la fiche ===== */
+
+.cfp-appt-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cfp-appt-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  transition: .2s;
+}
+
+.cfp-appt-list li:hover {
+  border-color: #cfe5e1;
+  background: #f8fcfb;
+}
+
+.cfp-appt-list li > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.cfp-appt-list li strong {
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.cfp-appt-list li span {
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.cfp-badge {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.cfp-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.cfp-badge.is-pending {
+  border-color: #f1dca8;
+  background: #fdf1da;
+  color: #a8740f;
+}
+
+.cfp-badge.is-confirmed {
+  border-color: #cdeadf;
+  background: #e0f4e8;
+  color: #1f7a4b;
+}
+
+.cfp-badge.is-cancelled {
+  border-color: #f3d3d3;
+  background: #fbe5e5;
+  color: #a63d3d;
+}
+
+/* ===== 15. Confirmation de suppression ===== */
+
+.cfp-delete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 4px;
+  text-align: center;
+}
+
+.cfp-delete-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border: 1px solid #f3d3d3;
+  border-radius: 19px;
+  background: #fff3f3;
+  color: #c34c4c;
+}
+
+.cfp-delete p {
+  margin: 4px 0 0;
+  color: #496469;
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.cfp-delete p strong {
+  color: var(--ink);
+}
+
+.cfp-delete > span {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* ===== 16. Animations ===== */
+
+@keyframes cfp-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes cfp-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes cfp-pop {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes cfp-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===== 17. Responsive ===== */
+
+@media (max-width: 900px) {
+  .cfp-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .cfp-search {
+    max-width: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .cfp-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .cfp-header > .cfp-btn {
+    align-self: flex-start;
+  }
+
+  .cfp-table {
+    min-width: 850px;
+  }
+
+  .cfp-pagination {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cfp-pagination > div {
+    width: 100%;
+  }
+
+  .cfp-pagination .cfp-btn {
+    flex: 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .cfp-header h1 {
+    font-size: 29px;
+  }
+
+  .cfp-header p {
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .cfp-toolbar {
+    padding: 13px;
+  }
+
+  .cfp-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .cfp-dialog {
+    width: 100%;
+    max-height: 92vh;
+    max-height: 92dvh;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .cfp-dialog-head,
+  .cfp-dialog-body,
+  .cfp-dialog-foot {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .cfp-dialog-foot .cfp-btn {
+    flex: 1;
+    white-space: normal;
+  }
+
+  .cfp-row,
+  .cfp-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cfp-profile {
+    padding: 14px;
+  }
+
+  .cfp-appt-list li {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cfp-page,
+  .cfp-page *,
+  .cfp-overlay,
+  .cfp-dialog {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ===== CORRECTION VISIBILITÉ DU FORMULAIRE PATIENT ===== */
+
+/* Champs de saisie */
+.cfp-field input,
+.cfp-field select,
+.cfp-field textarea {
+  width: 100%;
+  min-height: 46px;
+  padding: 11px 14px;
+  border: 1.5px solid #b8ccce !important;
+  border-radius: 10px;
+  background-color: #ffffff !important;
+  color: #0f2f36 !important;
+  font-family: inherit;
+  font-size: 13px;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+/* Champs au survol */
+.cfp-field input:hover,
+.cfp-field select:hover,
+.cfp-field textarea:hover {
+  border-color: #0f766e !important;
+}
+
+/* Champs sélectionnés */
+.cfp-field input:focus,
+.cfp-field select:focus,
+.cfp-field textarea:focus {
+  border-color: #0f766e !important;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.14) !important;
+}
+
+/* Texte indicatif */
+.cfp-field input::placeholder,
+.cfp-field textarea::placeholder {
+  color: #829698 !important;
+  opacity: 1;
+}
+
+/* Boutons du formulaire */
+.cfp-dialog-foot .cfp-btn {
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid #b8ccce;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0f2f36;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Bouton principal */
+.cfp-dialog-foot .cfp-btn-primary {
+  border-color: #0f766e;
+  background: #0f766e;
+  color: #ffffff !important;
+}
+
+/* Survol du bouton principal */
+.cfp-dialog-foot .cfp-btn-primary:hover {
+  background: #0b4f58;
+  border-color: #0b4f58;
+}
+
+/* Bouton secondaire */
+.cfp-dialog-foot .cfp-btn:not(.cfp-btn-primary):hover {
+  background: #effaf6;
+  border-color: #0f766e;
+}
+
+/* Labels */
+.cfp-field label {
+  display: block;
+  margin-bottom: 2px;
+  color: #29484d !important;
+  font-weight: 700;
+}
+
+/* Erreurs de validation */
+.cfp-field.has-error input,
+.cfp-field.has-error select,
+.cfp-field.has-error textarea {
+  border-color: #dc2626 !important;
+}
